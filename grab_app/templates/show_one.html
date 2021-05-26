@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Sounders Ticket Grab</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto"></ul>
+                <span class="navbar-text">
+                    <a href="/success">Home</a> | <a href="/profile">My Account</a> | <a href="/logout">Logout</a>
+                </span>
+            </div>
+        </div>
+    </nav>
+    <div id="wrap">
+        <div class="list">
+            <h1>Hi {{request.session.greeting}}!</h1>
+            <h2>{{ game.location }} game against {{ game.opp }}
+                {% if game.location == "AWAY" %}
+                <a href="https://www.alaskaair.com/" role="button" class="btn btn-primary">Get a Flight!</a>
+                {% endif %}    
+            </h2>
+            <h2>Date: {{ game.date|date:"SHORT_DATE_FORMAT" }}</h2>
+            <h2>Grab a Ticket! <a href="/grab/{{game.id}}" role="button" class="btn btn-primary">Grab!</a></h2>
+            -----------------------------------------
+            <h2>Who's going to the game:</h2>
+            <ul>
+                {% for user in game.joined_by.all %}
+                <tr>
+                    <h2><td>{{user.first_name}} {{user.last_name}}</td></h2>
+                </tr>
+                {% endfor %}
+            </ul>
+            <div id='write'>
+                <h2>Write a Post:</h2>
+                <form action="/process_message/{{game.id}}" method=POST>
+                    {% csrf_token %}
+                    <input type="text" name='mess'>
+                    <input type="submit" value="Post">
+                </form>
+            </div>
+            <p class='post'>{{post.message}}</p>
+            <div id='posts'>
+                {% for message in game.message_associated.all %}
+                <div class='one_post'>
+                    <p class='post'>{{message.message}}</p>
+                    <p class='poster'>By: {{message.poster.first_name}} {{message.poster.last_name}}</a></p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+html { 
+    background: url("sounders.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+#wrap{
+    background: url("sounders.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.container{
+    background-color: rgb(52, 52, 231);
+}
+
+#reg{
+    background-color: rgb(31, 223, 31);
+    border: solid 5px ; padding: 10px;
+    margin: auto;
+    width: 750px;
+    display: block;
+    padding: 10px;
+}
+
+#log{
+    background-color: rgb(31, 223, 31);
+    border: solid 5px ; padding: 10px;
+    margin: auto;
+    width: 750px;
+    display: block;
+    padding: 10px;
+
+}
+
+.create{
+    background-color: rgb(31, 223, 31);
+    width: 500px;
+    height: 500px;
+    display: grid;
+    margin: auto;
+    padding: 20px;
+}
+
+.list{
+    background-color: rgb(31, 223, 31);
+    width: 750px;
+    display: block;
+    text-align: center;
+    margin: auto;
+    border: solid 20px; color: black;
+}
+
+#location, #opp, #date{
+    width: 460px;
+    height: 38px;
+    border-radius: 5px;
+    border: solid black 2px;
+}
+
+.one_post{
+    border: solid black 2px;
+    width: 600px;
+    align-content: center;
+    margin: 10px 60px;
+    padding: 2px;
+}
+
+a:link {
+    color: green;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+a:active {
+    color: yellow;
+    background-color: transparent;
+    text-decoration: underline;
+}

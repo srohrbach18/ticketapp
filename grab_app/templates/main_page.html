@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Sounders Ticket Grab</title>
+</head>
+<body>
+    <div id='wrap'>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto"></ul>
+                    <span class="navbar-text">
+                        <a href="/success">Home</a> | <a href="/profile">My Account</a> | <a href="/logout">Logout</a>
+                    </span>
+                </div>
+            </div>
+        </nav>
+        <div id='write'>
+            <div class="list">
+                <h1>ROAD TO THE CUP</h1>
+                <h3>Welcome to the group, {{request.session.greeting}}! We are excited for you to join us cheering the Sounders this season! Grab a ticket for whichever games you can attend!</h3>
+                <h1>Available Games or <a href="/games/new">Add a Game!</a></h1>
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th>Opponent</th>
+                            <th>Date</th>
+                            <th>Location</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for game in all_games %}
+                        <tr>
+                            <td><a href="/games/{{game.id}}">{{ game.opp }}</a></td>
+                            <td>{{ game.date|date:"SHORT_DATE_FORMAT" }}</td>
+                            <td>{{ game.location }}</td>
+                            <td><a href="/games/{{game.id}}/delete" class="badge badge-danger">Remove</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
